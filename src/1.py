@@ -1,16 +1,4 @@
-def get_input(filename: str):
-    with open(filename) as file:
-        return [line.rstrip() for line in file]
-
-def get_lists(locations: list):
-    first_list = []
-    second_list = []
-    for l in locations:
-        splits = l.split()
-        first_list.append(int(splits[0]))
-        second_list.append(int(splits[1]))
-
-    return first_list, second_list
+from helpers import get_input, get_two_lists
 
 def part1(lists):
     first_list, second_list = lists
@@ -28,8 +16,8 @@ def part2(lists):
     print(f"Similarity score = {similarity}")
 
 if __name__ == "__main__":
-    locations = get_input("input.txt")
-    lists = get_lists(locations)
+    locations = get_input("inputs/1.txt")
+    lists = get_two_lists(locations)
 
     part1(lists)
     part2(lists)
