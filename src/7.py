@@ -1,4 +1,4 @@
-from helpers import get_input
+from helpers import get_input, measure_runtime
 
 def parse_line(line: str):
     l = line.split(':')
@@ -6,6 +6,7 @@ def parse_line(line: str):
     numbers = l[1].strip().split(' ')
     return int(target), [int(n) for n in numbers]
 
+@measure_runtime
 def part1(lines: list[tuple], concat = False):
     sum = 0
     for eq in lines:
@@ -21,6 +22,7 @@ def part1(lines: list[tuple], concat = False):
                 new_results.append(r * n)
                 if concat:
                     new_results.append(int(str(r) + str(n)))
+            new_results = [n for n in new_results if n <= target]
             results = new_results
         if target in results:
             sum += target
