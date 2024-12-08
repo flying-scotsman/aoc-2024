@@ -1,5 +1,15 @@
 from collections import defaultdict
 
+def measure_runtime(fn):
+    from time import time
+    def wrapper(*args, **kwargs):
+        start = time()
+        result = fn(*args, **kwargs)
+        end = time()
+        print(f"{fn.__name__} executed in {end-start:.4g} seconds.")
+        return result
+    return wrapper
+
 def get_input(filename: str):
     with open(filename) as file:
         return [line.rstrip() for line in file]
@@ -50,13 +60,3 @@ class Graph():
     def is_connected_cmp(self, node1, node2):
         # cmp_to_key requires a negative number for less than
         return -1 if self.is_connected(node1, node2) else 1
-
-def measure_runtime(fn):
-    from time import time
-    def wrapper(*args, **kwargs):
-        start = time()
-        result = fn(*args, **kwargs)
-        end = time()
-        print(f"{fn.__name__} executed in {end-start:.3f} seconds.")
-        return result
-    return wrapper
