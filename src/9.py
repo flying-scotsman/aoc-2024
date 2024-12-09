@@ -86,10 +86,10 @@ def create_lists(input: str):
     for i, elem in enumerate(input):
         if i % 2 == 0:
             file_blocks.append(FileBlock(int(elem), item_pos, i // 2))
-        else:
+        elif int(elem) > 0:
             empty_blocks.append(Block(int(elem), item_pos))
         item_pos += int(elem)
-    return file_blocks, [e for e in empty_blocks if e.length > 0]
+    return file_blocks, empty_blocks
 
 @measure_runtime
 def part2(input: str):
@@ -102,7 +102,7 @@ def part2(input: str):
     print(f"File's checksum is {checksum}")
 
 with open("inputs/9.txt") as file:
-    input = [line for line in file][0]
+    input = file.read()
 
 part1(input)
 part2(input)
