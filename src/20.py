@@ -82,6 +82,12 @@ def part1(racetrack: Racetrack, starting_position: tuple):
     cheats = check_for_cheats_part1(racetrack, path, minimum_cheat_length)
     print(f'Total number of cheats with lengths > {minimum_cheat_length}: {sum(cheats.values())}')
 
+def part2(racetrack: Racetrack, starting_position: tuple):
+    path = traverse_racetrack(racetrack, starting_position)
+    minimum_cheat_length = 50
+    # TODO: If you find a pound key, you traverse the racetrack with the condition of pound
+    # key instead of full stop, end character is full stop and it's a recursive search
+
 lines = get_input('inputs/20.txt')
 racetrack = Racetrack([list(l) for l in lines])
 starting_position = find_starting_position(racetrack)
