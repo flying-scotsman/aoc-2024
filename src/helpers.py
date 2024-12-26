@@ -24,11 +24,11 @@ def get_two_lists(lines: list):
 
     return first_list, second_list
 
-def get_nested_lists(lines: list):
+def get_nested_lists(lines: list, typecast = int):
     outer_list = []
     for l in lines:
         splits = l.split()
-        outer_list.append([int(e) for e in splits])
+        outer_list.append([typecast(e) for e in splits])
     return outer_list
 
 class Graph():
@@ -60,3 +60,23 @@ class Graph():
     def is_connected_cmp(self, node1, node2):
         # cmp_to_key requires a negative number for less than
         return -1 if self.is_connected(node1, node2) else 1
+
+class Grid():
+    def __init__(self, grid):
+        self._grid = grid
+
+    def __getitem__(self, position):
+        try:
+            return self._grid[position[0]][position[1]]
+        except IndexError:
+            if isinstance(self._grid[0][0], str):
+                return ''
+            return -1
+
+    @property
+    def num_rows(self):
+        return len(self._grid)
+
+    @property
+    def num_cols(self):
+        return len(self._grid[0])

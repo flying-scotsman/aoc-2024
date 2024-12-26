@@ -5,26 +5,11 @@
 # find the path first, then go back through, check all the walls and save the cheats that
 # are interesting.
 
-from helpers import get_input, measure_runtime
+from helpers import get_input, measure_runtime, Grid
 from collections import defaultdict
 
-class Racetrack():
-    def __init__(self, racetrack):
-        self._racetrack = racetrack
-
-    def __getitem__(self, position):
-        try:
-            return self._racetrack[position[0]][position[1]]
-        except IndexError:
-            return ''
-
-    @property
-    def num_rows(self):
-        return len(self._racetrack)
-
-    @property
-    def num_cols(self):
-        return len(self._racetrack[0])
+class Racetrack(Grid):
+    pass
 
 def find_starting_position(racetrack: Racetrack):
     for r in range(racetrack.num_rows):
