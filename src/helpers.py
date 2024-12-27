@@ -62,7 +62,7 @@ class Graph():
         return -1 if self.is_connected(node1, node2) else 1
 
 class Grid():
-    def __init__(self, grid):
+    def __init__(self, grid=[]):
         self._grid = grid
 
     def __getitem__(self, position):
@@ -73,6 +73,9 @@ class Grid():
                 return ''
             return -1
 
+    def __setitem__(self, position, value):
+        self._grid[position[0]][position[1]] = value
+
     def __len__(self):
         return len(self._grid)
 
@@ -82,9 +85,13 @@ class Grid():
 
     @property
     def num_cols(self):
-        return len(self._grid[0])
+        return len(self._grid[0]) if self.num_rows else 0
 
     @classmethod
     def from_filename(cls, filename: str, typecast=str):
         input = get_input(filename)
         return cls([[typecast(i) for i in l] for l in input])
+
+    @classmethod
+    def from_dims(cls, dims=(0,0), default_value='.'):
+        return cls([dims[1] * [default_value] for _ in range(dims[0])])
