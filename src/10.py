@@ -1,12 +1,6 @@
-from helpers import get_input, Grid
+from helpers import Grid
 import itertools
 from collections import defaultdict
-
-def create_grid(lines):
-    full_list = []
-    for l in lines:
-        full_list.append([int(i) for i in l])
-    return Grid(full_list)
 
 def get_steps(r, c):
     # up, left, down, right
@@ -51,7 +45,4 @@ def part1(grid: Grid, distinct = False):
 def part2(grid: Grid):
     part1(grid, True)
 
-lines = get_input('inputs/10.txt')
-grid = create_grid(lines)
-
-part2(grid)
+part2(Grid.from_filename('inputs/10.txt', typecast=int))

@@ -73,6 +73,9 @@ class Grid():
                 return ''
             return -1
 
+    def __len__(self):
+        return len(self._grid)
+
     @property
     def num_rows(self):
         return len(self._grid)
@@ -80,3 +83,8 @@ class Grid():
     @property
     def num_cols(self):
         return len(self._grid[0])
+
+    @classmethod
+    def from_filename(cls, filename: str, typecast=str):
+        input = get_input(filename)
+        return cls([[typecast(i) for i in l] for l in input])
